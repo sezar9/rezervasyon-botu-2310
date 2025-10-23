@@ -1,11 +1,6 @@
-selenium
-time
-smtplib
-MIMEText
-MIMEMultipart
 requests
 python-dotenv
-
+selenium
 
 
 
