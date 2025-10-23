@@ -2,7 +2,6 @@ import os
 import time
 import requests
 import smtplib
-import winsound
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from selenium import webdriver
@@ -60,7 +59,7 @@ def send_email(subject, message):
 
 # === Tarayıcı Ayarları ===
 options = webdriver.ChromeOptions()
-options.add_argument("--start-maximized")
+options.add_argument("--headless")  # Render ortamında görünmez çalışması için
 options.add_argument("--no-sandbox")
 options.add_argument("--disable-dev-shm-usage")
 
@@ -103,6 +102,7 @@ try:
     while True:
         sayac += 1
         print(f"🔍 {sayac}. kontrol yapılıyor...")
+
         seanslar = driver.find_elements(By.CSS_SELECTOR, "div.well")
         uygun_bulundu = False
         mesaj = ""
@@ -122,10 +122,6 @@ try:
                 continue
 
         if uygun_bulundu:
-            # 🔔 Sesli ve Telegram + Mail uyarısı
-            for _ in range(3):
-                winsound.Beep(1500, 700)
-
             send_telegram(f"🎾 Boş seans bulundu!\n\n{mesaj}")
             send_email("🎾 Spor.İstanbul Boş Seans Uyarısı", mesaj)
         else:
