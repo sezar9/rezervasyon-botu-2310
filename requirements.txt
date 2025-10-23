@@ -1,5 +1,10 @@
 selenium==4.24.0
+time
+smtplib
+MIMEText
+MIMEMultipart
 requests
 python-dotenv
+
 
 
